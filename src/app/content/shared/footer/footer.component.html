@@ -1,0 +1,62 @@
+<footer class="footer-black">
+  <div class="main-footer footer_top">
+    <div class="container">
+      <div class="row">
+        <div class=" col-md-6">
+          <div class="footer-box">
+            <h3 class="widget-title title-white">احنا مين</h3>
+            <p>لو جعان ومش عارف تاكل إيه فأنت جيت المكان الصح!</p>
+            <p>
+              خدلك لفة في الموقع وهتلاقي حاجات على مزاجك ماتتخيلش إنها بتتحضر بسهولة وهتعملها
+              بنفسك في البيت.
+            </p>
+
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="footer-box">
+            <h3 class="widget-title title-white">شوف دول</h3>
+            <ul class="footer-cat">
+              <li><a routerLink="/">الرئيسية</a></li>
+              <li><a routerLink="/about-us"> احنا مين</a></li>
+              <li *ngFor="let category of categories"><a [routerLink]="['/articles/', category.id]">{{category.title}}</a></li>
+              <li><a routerLink="/contact-us"> تواصل معنا</a></li>
+
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="footer-box">
+            <h3 class="widget-title title-white">لو عاوز تكلمنا</h3>
+
+            <ul class="contact-list">
+
+              <li class="contact-list-li"><i class="fas fa-map"></i>العنوان: {{contactUs?.address}}</li>
+              <li class="contact-list-li"><i class="fas fa-phone"></i>اتصل بنا: <a href="tel:{{contactUs?.phone}}
+                                    ">{{contactUs?.phone}}
+                </a></li>
+              <li class="contact-list-li"><i class="fas fa-envelope"></i>ايميل: <a href="mailto:{{contactUs?.email}}
+                                    ">{{contactUs?.email}}
+                </a>
+              </li>
+              <li>
+                <ul class="d-flex">
+                  <li class="li-facebook"><a href="{{contactUs?.facebook}}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                  <li class="li-twitter"><a href="{{contactUs?.twitter}}" target="_blank"><i class="fab fa-twitter"></i>
+                    </a>
+                  </li>
+                  <li class="li-google-plus"><a href="{{contactUs?.instagram}}" target="_blank"><i class="fab fa-google"></i> </a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sub-footer">
+    حقوقنا محفوظة عند<a href="https://digitalbondmena.com/"><img src="assets/img/digital-logo.png" height="30px"
+        alt=""></a>
+  </div>
+</footer>

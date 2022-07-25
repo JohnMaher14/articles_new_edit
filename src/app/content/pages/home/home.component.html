@@ -1,0 +1,283 @@
+<div class="" *ngIf="loading">
+  <app-loader></app-loader>
+</div>
+<!-- /.End of logo section -->
+<div class="container">
+  <div class="newstricker_inner">
+    <div class="trending">بيحصل دلوقتي</div>
+    <owl-carousel-o [options]="newsSlider" id="newsTicker" dir="ltr">
+
+      <ng-container *ngFor="let article of articles">
+        <ng-template carouselSlide>
+          <div class="item">
+            <a [routerLink]="['article-details' , article.id]">
+              {{article.title}}
+            </a>
+          </div>
+
+        </ng-template>
+      </ng-container>
+
+    </owl-carousel-o>
+  </div>
+</div>
+<!--  /. End of newstricker -->
+<div class="news-masonry">
+  <div class="container">
+    <div class="row mas-m">
+      <ng-container *ngFor="let article of articles|slice:-1">
+
+        <div class="col-sm-6 mas-p">
+          <div class="mas-item mas-big">
+            <a [routerLink]="['/article-details',article.id]">
+              <figure><img [src]="articleImage+article.main_image" class="img-responsive" alt="">
+              </figure>
+            </a>
+            <div class="mas-text">
+              <!-- <div class="post-cat"><a [routerLink]="['/article-details',article.id]">أكلات شرقي</a></div> -->
+              <h2 class="mas-title"><a [routerLink]="['/article-details',article.id]">
+                  {{article.title}}
+                </a></h2>
+              <div class="mas-details">
+                <div class="text-white div-overflow" [innerHtml]="article.text">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.End of masonry item -->
+        </div>
+      </ng-container>
+
+      <div class="col-sm-6 mas-p">
+        <div class="row mas-m">
+          <ng-container *ngFor="let article of articles|slice:-5:-1">
+            <div class="col-xs-6 col-sm-6 mas-p">
+              <div class="item mas-m-b">
+                <div class="mas-item masonry-sm">
+                  <a [routerLink]="['/article-details',article.id]">
+                    <figure><img [src]="articleImage+article.main_image" class="img-responsive" alt="">
+                    </figure>
+                  </a>
+                  <div class="mas-text">
+                    <!-- <div class="post-cat"><a [routerLink]="['/article-details',article.id]">أكلات شرقي</a></div> -->
+                    <h4 class="mas-title"><a [routerLink]="['/article-details',article.id]">
+                        {{article.title}}
+                      </a></h4>
+                    <div class="mas-details">
+                      <div  class="text-white div-overflow" [innerHtml]="article.text">
+
+                      </div>
+                      <!-- <ng-container></ng-container> -->
+
+                    </div>
+                  </div>
+                  <!-- /.End of masonry item -->
+                </div>
+
+              </div>
+            </div>
+          </ng-container>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class=" container">
+  <div class="height_15"></div>
+  <div class="banner-content">
+    <img src="assets/img/ad-728x90-1.png" class="img-responsive center-block" alt="">
+  </div>
+  <!-- /.End of banner content -->
+</div>
+<div class="container">
+  <div class="row">
+    <div class="hidden-xs hidden-sm col-md-2 leftSidebar">
+      <div class="trending-post">
+        <div class="title-holder">
+          <h3 class="title">ترندات</h3>
+          <span class="title-shape title-shape-dark"></span>
+        </div>
+        <!--  /.End of title -->
+        <ng-container *ngFor="let article of articles">
+          <div class="single-post" *ngIf="article.trend_status == 1 && article.post_status == 1">
+
+            <div class="entry-meta">
+              <span class="comment-link"><a><i class="fa fa-comment" aria-hidden="true"></i>
+                {{article.comment_re?.length}}
+                  ردوا عليه</a></span>
+            </div>
+            <h4><a [routerLink]="['/article-details',article.id]">
+                {{article.title}}
+              </a></h4>
+
+          </div>
+        </ng-container>
+        <!-- /.End of single post-->
+
+      </div>
+      <!-- /.End of trending post -->
+      <div class="banner-content">
+        <img src="assets/img/ad-180x480-1.png" class="img-responsive" alt="">
+      </div>
+      <!-- /.End of banner content -->
+    </div>
+    <main class="col-xs-12 col-sm-8 col-md-7 content p_r_40">
+      <article class="grid_post grid_post_lg text-center">
+        <figure *ngFor="let article of articlesViews|slice:0:1">
+          <a class="grid_image"><img [src]="articleImage+article.main_image" class="img-responsive w-100"
+              alt=""></a>
+          <figcaption>
+            <!-- <div class="post-cat"><span>في</span> <a href="articles.html">اكلات شرقي</a></div> -->
+            <div class="entry-meta">
+              <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i><time
+                  datetime="2018-01-21T19:00">{{article.created_at}}</time></span>
+
+
+            </div>
+            <h3 class="grid_post_title">{{article.title}}<a>
+              <div [innerHtml]="article.text < 70" *ngIf="article.text.length < 70">
+
+              </div>
+              <div [innerHtml]="article.text | slice:0:70" *ngIf="article.text.length > 70">
+
+              </div>
+                <a [routerLink]="['/article-details',article.id]" class="btn link-btn btn-outline btn-rounded">
+                  يلا بينا </a>
+              </a>
+            </h3>
+
+            <!-- /.Post button -->
+          </figcaption>
+        </figure>
+      </article>
+      <!-- /.End of grid post -->
+      <div *ngFor="let article of articles| slice:0:4"  class="media meida-md">
+        <div class="media-left">
+          <a><img [src]="articleImage+article.main_image" class="media-object" alt=""></a>
+        </div>
+        <!-- /.Post image -->
+        <div class="media-body">
+          <div class="post-header">
+            <div class="post-cat"><span>في</span> <a href="articles.html">أكلات شرقي</a></div>
+            <h3 class="media-heading"><a [routerLink]="['/article-details',article.id]">
+              {{article.title}}
+            </a></h3>
+            <div class="entry-meta">
+              <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i><time
+                  datetime="2018-01-21T19:00">{{article.created_at}}</time></span>
+              <span class="comment-link"><a><i class="fa fa-comment" aria-hidden="true"></i>9
+                  ردوا عليه</a></span>
+            </div>
+            <!-- /.Post meta -->
+          </div>
+          <div style="margin-bottom: 18px;" [innerHtml]="article.text">
+          </div>
+          <div class="element-block">
+            <a [routerLink]="['/article-details',article.id]" class="btn link-btn btn-outline btn-rounded"> يلا
+              بينا </a>
+
+            <!-- /.Post button -->
+            <!-- <div class="post_share">
+                                      <a class="smedia facebook fa fa-facebook" href="#"></a>
+                                      <a class="smedia twitter fa fa-twitter" href="#"></a>
+                                      <a class="smedia googleplus fa fa-google-plus" href="#"></a>
+                                  </div> -->
+            <!-- /.Post social share -->
+          </div>
+        </div>
+      </div>
+
+
+      <div class="title-holder">
+        <h3 class="title">عندنا إيه</h3>
+        <span class="title-shape title-shape-dark"></span>
+      </div>
+      <div class="row">
+        <ng-container *ngFor="let category of categories">
+
+          <div class="col-md-4" *ngIf="category.category_status == 1">
+            <a class="category" [routerLink]="['/articles', category.id ]">
+              <figure><img [src]="categoryImage+category.banner_image" class="img-responsive" alt=""></figure>
+              <div class="category_name">{{category.title}}</div>
+            </a>
+            <!-- /.End of category -->
+          </div>
+
+        </ng-container>
+      </div>
+      <!--  /.End of title -->
+
+
+
+      <!-- /.End of pagination -->
+    </main>
+    <aside class="col-xs-12 col-sm-4 col-md-3 rightSidebar">
+      <div class="latest_post_widget">
+        <div class="title-holder">
+          <h3 class="title">بيتشاف فشخ</h3>
+          <span class="title-shape title-shape-dark"></span>
+        </div>
+        <!--  /.End of title -->
+        <div class="posts">
+
+
+
+          <!-- /.latest post -->
+          <div *ngFor="let article of articlesViews| slice:1:5" class="media latest_post">
+            <a class="media-left">
+              <img [src]="articleImage+article.main_image" class="media-object" alt="">
+            </a>
+            <div class="media-body">
+              <h6 class="media-heading"><a [routerLink]="['/article-details',article.id]">
+                {{article.title}}
+              </a></h6>
+              <div class="entry-meta">
+                <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i><time
+                    datetime="2018-01-21T19:00">
+                    {{article.created_at}}
+                  </time></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- /.End of latest post -->
+      <div class="social_share_btn">
+        <div class="title-holder">
+          <h3 class="title">ما تيجي تتابعنا</h3>
+          <span class="title-shape title-shape-dark"></span>
+        </div>
+        <!--  /.End of title -->
+        <ul>
+          <li class="li-facebook"><a href="#" target="_blank"><i class="fab fa-facebook-f"></i>
+              Facebook</a></li>
+          <li class="li-twitter"><a href="#" target="_blank"><i class="fab fa-twitter"></i>
+              Twitter</a></li>
+          <li class="li-google-plus"><a href="#" target="_blank"><i class="fab fa-google"></i>
+              Google</a></li>
+        </ul>
+      </div>
+      <!-- /.End of subscribe -->
+      <div class="banner-content">
+        <img src="assets/img/ad-300x250-1.png" class="img-responsive center-block" alt="">
+      </div>
+      <!-- /.End of banner content -->
+      <div class="category_widget">
+
+      </div>
+      <!-- /.End of category widget -->
+    </aside>
+  </div>
+</div>
+<div class=" container">
+  <div class="height_15"></div>
+  <div class="banner-content">
+    <img src="assets/img/ad-728x90-1.png" class="img-responsive center-block" alt="">
+  </div>
+  <!-- /.End of banner content -->
+</div>

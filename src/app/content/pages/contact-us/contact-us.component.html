@@ -1,0 +1,123 @@
+<app-loader *ngIf="loading"></app-loader>
+<div class="parallax page_header" style="background-image: url('assets/img/GaremetAkl/Banner.jpg'); background-size: cover;">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-12">
+              <h3>تواصل معنا</h3>
+              <ol class="breadcrumb">
+                  <li><a routerLink="/">الرئيسية</a></li>
+                  <li class="active">تواصل معنا</li>
+              </ol>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- /.End of page header -->
+<div class="page-content">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-6 p_r_40">
+              <div class="contact-info">
+                  <div class="contact-address">
+                      <div class="contact-text">
+                          <h3>معلومات</h3>
+                          <p>لو جعان ومش عارف تاكل إيه فأنت جيت المكان الصح!
+                              خدلك لفة في الموقع وهتلاقي حاجات على مزاجك ماتتخيلش إنها بتتحضر بسهولة وهتعملها بنفسك في البيت.
+                              .</p>
+                      </div>
+                      <div class="address-info">
+                          <div class="media">
+                              <div class="pull-left">
+                                  <img src="assets/img/icon/agenda.png" class="img-responsive" alt="">
+                              </div>
+                              <div class="media-body">
+                                  <h4 class="addon-title">العنوان</h4>
+                                  <div class="addon-text">{{contactUs?.address}}</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="address-info">
+                          <div class="media">
+                              <div class="pull-left">
+                                  <img src="assets/img/icon/email.png" class="img-responsive" alt="">
+                              </div>
+                              <div class="media-body">
+                                  <h4 class="addon-title">الابريد الألكتروني</h4>
+                                  <div class="addon-text"><a href="{{contactUs?.email}}">{{contactUs?.email}}</a></div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="address-info">
+                          <div class="media">
+                              <div class="pull-left">
+                                  <img src="assets/img/icon/phone.png" class="img-responsive" alt="">
+                              </div>
+                              <div class="media-body">
+                                  <h4 class="addon-title">رقم التليفون</h4>
+                                  <div class="addon-text"><a href="tel:{{contactUs?.phone}}">{{contactUs?.phone}}</a>
+                                      </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="contact-form">
+                      <h3>تقييم</h3>
+                      <form [formGroup]="contactUsForm" (ngSubmit)="submit(contactUsForm)">
+                          <div *ngIf="success" class="alert alert-success" role="alert">
+                            وصلت يا ريس
+                          </div>
+                          <div class="form-group">
+                            <label for="name" class="col-sm-3 col-md-2 col-form-label">الرسالة *</label>
+
+                              <textarea class="form-control" id="textarea" rows="5" formControlName="message" required></textarea>
+                            </div>
+                            <div *ngIf="contactUsForm.controls['message'].touched && contactUsForm.controls['message'].errors != null" class="alert alert-danger"  role="alert">
+                              <strong>الرسالة مطلوبة</strong>
+                            </div>
+                          <div class="form-group row">
+                              <label for="name" class="col-sm-3 col-md-2 col-form-label">الاسم *</label>
+                              <div class="col-sm-6 col-md-5">
+                                  <input class="form-control" formControlName="name" id="name2" type="text" required>
+                              </div>
+                            </div>
+                            <div *ngIf="contactUsForm.controls['name'].touched && contactUsForm.controls['name'].errors != null" class="alert alert-danger"  role="alert">
+                              <strong *ngIf="contactUsForm.controls['name'].errors['required']">الاسم مطلوبة</strong>
+                              <strong *ngIf="contactUsForm.controls['name'].errors['pattern']">الاسم يحتوي علي ارقام او حروف</strong>
+                            </div>
+                          <div class="form-group row">
+                              <label for="email" class="col-sm-3 col-md-2 col-form-label">الأيميل *</label>
+                              <div class="col-sm-6 col-md-5">
+                                  <input class="form-control" formControlName="email" id="email" type="email" required>
+                              </div>
+                            </div>
+                            <div *ngIf="contactUsForm.controls['email'].touched && contactUsForm.controls['email'].errors != null" class="alert alert-danger"  role="alert">
+                              <strong *ngIf="contactUsForm.controls['email'].errors['required']">البريد الالكتروني مطلوبة</strong>
+                              <strong *ngIf="contactUsForm.controls['email'].errors['email']">البريد الالكتروني غير صحيح</strong>
+                            </div>
+                          <div class="form-group row">
+                              <label for="email" class="col-sm-3 col-md-2 col-form-label">رقم الهاتف *</label>
+                              <div class="col-sm-6 col-md-5">
+                                  <input class="form-control" onkeypress="isInputNumber(event)" min="1" formControlName="phone" id="phone" type="number" required>
+                              </div>
+                            </div>
+                            <div *ngIf="contactUsForm.controls['phone'].touched && contactUsForm.controls['phone'].errors != null" class="alert alert-danger"  role="alert">
+                              <strong *ngIf="contactUsForm.controls['phone'].errors['required']">رقم التليفون مطلوبة</strong>
+                              <strong *ngIf="contactUsForm.controls['phone'].errors['pattern']">رقم التليفون لازم يكون مصري</strong>
+                            </div>
+
+                          <button type="submit" [disabled]="contactUsForm.invalid" class="btn link-btn" >يلا بينا </button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-6 p_l_40">
+              <!-- The element that will contain our Google Map. This is used in both the Javascript and CSS above. -->
+              <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d3454.1417887194916!2d31.20700281436143!3d30.03278982607959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d30.0327897!2d31.2091125!4m5!1s0x145846d11cf8807f%3A0xca4ee0628657c9e8!2s11%20Dr%20El-Sebaey%2C%20Ad%20Doqi%2C%20Dokki%2C%20Giza%20Governorate%203750230!3m2!1d30.032703899999998!2d31.209198299999997!5e0!3m2!1sen!2seg!4v1654011388421!5m2!1sen!2seg" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+      </div>
+  </div>
+  <div class="height_30"></div>
+</div>
+
+<!-- /. End of instagram -->
+

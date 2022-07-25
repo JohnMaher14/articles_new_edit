@@ -1,0 +1,181 @@
+
+  <nav class="navbar navbar-inverse navbar-sticky navbar-mobile bootsnav on menu-center sticked">
+    <div class="container-fluid">
+      <div class="attr-nav">
+        <ul>
+          <li class="side-menu" (click)="openSidebar()"><a href="javascript:void(0)"><i class="fa fa-bars"></i></a></li>
+        </ul>
+      </div>
+      <!-- End Atribute Navigation -->
+      <!-- Start Header Navigation -->
+      <div class="navbar-header d-flex align-items-center">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+          <i class="fa fa-bars"></i>
+        </button>
+        <a class="navbar-brand" routerLink="/">
+          <img src="assets/img/GaremetAkl/Logo/Logo.png" class="logo" alt="">
+        </a>
+
+      </div>
+      <!-- End Header Navigation -->
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navbar-menu">
+        <ul class="nav navbar-nav navbar-center" data-in="navFadeInDown" data-out="navFadeOutUp">
+          <li class="">
+            <a><i class="fas fa-calendar mx-1"></i> {{today}} </a>
+          </li>
+
+          <li class="dropdown">
+            <a routerLink="/weather" class="dropdown-toggle"><i class="fa fa-cloud mx-1" style="color: #F29F26;"></i>
+              الطقس</a>
+            <ul class="dropdown-menu">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h4 class="card-title">
+                    الطقس لمدينة <span>Giza</span>
+                  </h4>
+                  <div class="d-flex align-items-center justify-content-around">
+
+                    <i class="fa fa-cloud fa-2x" style="color: #F29F26;"></i>
+                    <p class="my-2">
+                      <span>{{weatherContainer?.temp_c}}°C</span>
+                    </p>
+                    <p class="my-2"><span>{{weatherContainer?.feelslike_c}}</span>°<span class="scale">C</span></p>
+                  </div>
+                  <!--
+                                      <p>High: <span id="high">{Number}</span>&deg;<span class="scale">{Scale}</span></p>
+                                      <p>Low: <span id="low">{Number}</span>&deg;<span class="scale">{Scale}</span></p>
+                                          <button id="scale-btn" class="btn btn-info">{Scale Word}</button> -->
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a routerLink="/prayers" class="dropdown-toggle"><i style="color: #198754;" class="fas fa-mosque mx-1"></i>
+              مواقيت الصلاة </a>
+            <ul class="dropdown-menu">
+              <table class="table prayer-times-3 text-center mb-0">
+                <thead>
+                  <th class="text-center">الصلاة</th>
+                  <th class="text-center">مواقيت الصلاة</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Fajr
+                    </td>
+                    <td>{{prayerTimeContainer?.Fajr}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Dhuhr
+
+
+                    </td>
+                    <td>{{prayerTimeContainer?.Dhuhr}}
+
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Asr
+                    </td>
+                    <td>{{prayerTimeContainer?.Asr}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Maghrib
+
+                    </td>
+                    <td>{{prayerTimeContainer?.Maghrib}}
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Isha
+
+
+                    </td>
+                    <td>{{prayerTimeContainer?.Isha}}
+
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a class="dropdown-toggle"><i class="fas fa-boxes" style="color: #0DCAF0;"></i> ارشيفنا</a>
+            <ul class="dropdown-menu ">
+              <form action="" [formGroup]="dateFilter" (ngSubmit)="onSubmitDate()" method="post" class="text-right">
+
+                <div class="form-group">
+                  <input type="date"
+                  formControlName="date1"
+                  class="form-control"
+                  >
+                </div>
+                <div class="form-group">
+                  <input type="date"
+                  formControlName="date2"
+                  class="form-control"
+                  [max]="todayReverse"
+                  >
+                </div>
+                <button class="btn btn-success" [disabled]="dateFilter.invalid" type="submit">دور</button>
+              </form>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div>
+    <div class="side" id="side"  >
+      <a href="#" (click)="closeBtn()" class="close-side"><i class="ti-close"></i></a>
+      <div class="widget">
+        <div class="logo px-2">
+
+          <img src="assets/img/GaremetAkl/Logo/Logo.png" class="w-100" alt="">
+        </div>
+
+        <ul class="link">
+          <hr>
+          <div class="d-flex justify-content-around py-3">
+            <a (click)="navOpen()" routerLink="/weather"><i class="fas fa-cloud fa-2x" style="color: #F29F26;"></i> </a>
+            <a (click)="navOpen()" routerLink="/prayers"><i class="fas fa-mosque fa-2x" style="color: #198754;"></i> </a>
+          </div>
+          <hr>
+
+          <li><a (click)="navOpen()" routerLink="/"><i class="fas fa-home"></i> الرئيسية</a></li>
+          <hr>
+          <li><a (click)="navOpen()" routerLink="/about-us"><i class="fas fa-address-card"></i> احنا مين</a></li>
+          <hr>
+          <ng-container *ngFor="let category of categories">
+            <ng-container *ngIf="category.category_status == 1">
+
+              <li><a (click)="navOpen()" [routerLink]="['/articles', category.id]"><i class="fas fa-utensils"></i> {{category.title}}</a></li>
+              <hr>
+            </ng-container>
+
+          </ng-container>
+          <li><a (click)="navOpen()" routerLink="/contact-us"><i class="fas fa-phone"></i> تواصل معنا</a></li>
+          <hr>
+        </ul>
+      </div>
+      <div class="social_share_btn">
+        <h3 class="widget-title text-white">ما تيجي تتابعنا</h3>
+        <ul>
+          <li class="li-facebook"><a  (click)="navOpen()" href="#" target="_blank"><i class="fab fa-facebook-f"></i>
+              Facebook</a></li>
+          <li class="li-twitter"><a  (click)="navOpen()" href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+          </li>
+          <li class="li-google-plus"><a (click)="navOpen()"  href="#" target="_blank"><i class="fab fa-google"></i> Google</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.End of subscribe -->
+    </div>
+    <!-- /. End of side menu -->
+    <div class="side-overlay" (click)="closeSideOverlay()"></div>
+  </nav>

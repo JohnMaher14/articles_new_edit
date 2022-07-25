@@ -1,0 +1,86 @@
+<div class="" *ngIf="loading">
+  <app-loader></app-loader>
+</div>
+  <!-- /.End of navigation -->
+  <div class="parallax page_header" style="background-image: url('assets/img/GaremetAkl/Banner.jpg'); background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>المقالات</h3>
+                <ol class="breadcrumb">
+                    <li><a routerLink="/">الرئيسية</a></li>
+                    <li class="active">المقالات</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+  </div>
+<div class="container">
+  <main class="row py-5 content p_r_40">
+    <ng-container *ngFor="let article of articles | paginate: { itemsPerPage: 6, currentPage: page }">
+      <div class=" col-md-6" *ngIf="article.post_status == 1">
+        <div class="media meida-md">
+          <div class="media-left">
+            <a><img [src]="articleImage+article.main_image" class="media-object" alt=""></a>
+          </div>
+          <!-- /.Post image -->
+          <div class="media-body">
+            <div class="post-header">
+              <div class="post-cat"><span>في</span> <a>أكلات شرقي</a></div>
+              <h3 class="media-heading"><a>
+                  {{article.title}}
+                </a></h3>
+              <div class="entry-meta">
+                <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i><time
+                    datetime="2018-01-21T19:00">{{article.created_at | date:'short'}}
+                  </time></span>
+                <span class="comment-link"><a><i class="fa fa-comment" aria-hidden="true"></i>
+                  {{article.comment_re?.length}} ردوا عليه
+                  </a></span>
+              </div>
+              <!-- /.Post meta -->
+            </div>
+            <div style="margin-bottom: 18px;" [innerHtml]="article.text | slice:0:50" *ngIf="article.text.length > 50"></div>
+            <div style="margin-bottom: 18px;" [innerHtml]="article.text" *ngIf="article.text.length < 50"></div>
+            <div class="element-block">
+              <a [routerLink]="['/article-details', article.id]" class="btn link-btn btn-outline btn-rounded">يلا بينا</a>
+              <!-- /.Post button -->
+
+              <!-- /.Post social share -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </ng-container>
+
+
+
+
+    <!-- /.End of media left post -->
+    <!-- /.End of Load more -->
+    <!-- <div class="col-md-12 text-center">
+
+      <ul class="pagination ">
+        <li class="disabled"><a>&#8702;</a></li>
+
+        <li class="active"><a>1 <span class="sr-only">(current)</span></a></li>
+        <li><a>2</a></li>
+        <li><a>3</a></li>
+        <li class="page-numbers"><span>...</span></li>
+        <li><a>5</a></li>
+        <li><a>&#8701;</a></li>
+
+      </ul>
+    </div> -->
+    <!-- /.End of pagination -->
+  </main>
+  <pagination-controls class="d-flex align-content-center justify-content-center" [maxSize]="6" *ngIf="articles.length > 6"
+
+    previousLabel="الراح"
+    nextLabel="اللجاي"
+    (pageChange)="page = $event" >
+
+  </pagination-controls>
+</div>

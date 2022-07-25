@@ -1,0 +1,37 @@
+$dot-size: 2.5rem;
+$dot-colors: #fed600, #ff0954, #00e9ff, #e300ff;
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    to bottom right,
+    hsl(243, 45%, 18%),
+    hsl(243, 45%, 10%)
+  );
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $dot-size;
+}
+
+.dot {
+  height: $dot-size;
+  width: $dot-size;
+  border-radius: 50%;
+  transform-origin: center;
+
+  @for $i from 1 through length($dot-colors) {
+    &:nth-of-type(#{$i}) {
+      background-color: nth($dot-colors, $i);
+      box-shadow: inset -2px -7px 8px darken(nth($dot-colors, $i), 18%),
+        0px 6px 8px rgba(darken(nth($dot-colors, $i), 20%), 0.25);
+    }
+  }
+}

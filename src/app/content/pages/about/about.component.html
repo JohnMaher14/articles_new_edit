@@ -1,0 +1,124 @@
+<app-loader *ngIf="loading"></app-loader>
+<div class="parallax page_header"  style="background-image: url('assets/img/GaremetAkl/Banner.jpg')" >
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-12">
+              <h3>أحنا مين</h3>
+              <ol class="breadcrumb">
+                  <li><a routerLink="/">الرئيسية</a></li>
+                  <li class="active">أحنا مين</li>
+              </ol>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- /.End of page header -->
+<section class="about_us" style="padding: 30px 0;">
+  <div class="container">
+      <div class="row d-flex align-items-center py-2">
+          <div class="col-md-6">
+              <img [src]="aboutUsImage+aboutUs?.about_section_image" class="img-responsive" alt="">
+
+          </div>
+          <div class="col-md-6">
+              <h3>
+                {{aboutUs?.about_section_title}}
+              </h3>
+                <p>
+                  {{aboutUs?.about_section_text}}
+                </p>
+
+          </div>
+      </div>
+  </div>
+
+</section>
+<section class="about-us bg-secondary py-2 my-2" style="padding: 30px 0;">
+
+  <div class="container">
+      <section class="service border-section small-section">
+          <div class="row">
+              <div class="col-md-4 service-block wow animate slideInLeft" >
+                  <div class="media">
+
+                      <div class="media-body">
+                          <h4 class="text-primary">{{aboutUs?.first_media_title}}
+                          </h4>
+                          <p class="text-primary">{{aboutUs?.first_media_text}}
+                          </p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4 service-block wow animate slideInUp" >
+                  <div class="media">
+
+                      <div class="media-body">
+                          <h4 class="text-primary">{{aboutUs?.second_media_title}}
+                          </h4>
+                          <p class="text-primary">{{aboutUs?.second_media_text}}
+                          </p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4 service-block wow animate slideInRight">
+                  <div class="media">
+
+                      <div class="media-body">
+                          <h4 class="text-primary">{{aboutUs?.third_media_title}}
+                          </h4>
+                          <p class="text-primary">{{aboutUs?.third_media_text}}
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+  </div>
+</section>
+<section class="questions" style="padding: 30px 0;">
+<div class="container">
+  <div class="row d-flex align-items-center">
+      <div class="col-md-7">
+          <div class="accordion-widget">
+              <h3 class="code-title">احنا عارفين انت عاوز ايه</h3>
+              <ngb-accordion [closeOthers]="true" activeIds="static-1">
+
+                <ngb-panel id="static-1">
+                  <ng-template ngbPanelTitle>
+                    <span>{{aboutUs?.according_first_title}}</span>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    {{aboutUs?.according_first_text}}
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel id="static-2">
+                  <ng-template ngbPanelTitle>
+                    <span>{{aboutUs?.according_second_title}}</span>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    {{aboutUs?.according_second_text}}
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel id="static-3">
+                  <ng-template ngbPanelTitle>
+                    <span>{{aboutUs?.according_third_title}}</span>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    {{aboutUs?.according_third_text}}
+                  </ng-template>
+                </ngb-panel>
+              </ngb-accordion>
+
+              <!-- /.accordion-->
+          </div>
+          <!-- /.End of according widget -->
+      </div>
+      <div class="col-md-5">
+          <img [src]="aboutUsImage+aboutUs?.according_image" class="w-100" alt="">
+      </div>
+  </div>
+
+</div>
+<!-- questions -->
+<!-- end of single question -->
+</section>

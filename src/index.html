@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>أكلني شكرا</title>
+  <base href="./">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/img/GaremetAkl/Logo/Logo_white.png">
+  <link href="assets/img/GaremetAkl/Logo/Icon.png" rel="icon">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+  <app-root>
+    <div class="loader">
+      <div class="dots">
+          <img src="assets/img/GaremetAkl/Logo/Logo_white.png" class="loader_img" alt="">
+          <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+          </div>
+      </div>
+    </div>
+  </app-root>
+
+
+
+      <!-- /.End of Sign up  Sing in -->
+      <script>
+        function isInputNumber(event) {
+      var char = String.fromCharCode(event.which);
+      if(!(/[0-9]/.test(char))){
+          event.preventDefault();
+      }
+    }
+    window.addEventListener("keydown", function(e) {
+                if(["ArrowUp","ArrowDown"].indexOf(e.code) > -1) {
+                    e.preventDefault();
+                }
+            }, false);
+    </script>
+</body>
+</html>
