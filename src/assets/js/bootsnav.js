@@ -484,7 +484,7 @@
               $(".wrap-sticky").height(getHeight);
 
               // Windown on scroll
-              var getOffset = $(".wrap-sticky").offset().top;
+              var getOffset = $(".wrap-sticky").offset();
               $(window).on("scroll", function () {
                   var scrollTop = $(window).scrollTop();
                   if (scrollTop > getOffset) {
@@ -527,7 +527,7 @@
                   // Scroll
                   var scrollTop = $(window).scrollTop(),
                           $anchor = $(this).find('a'),
-                          $section = $($anchor.attr('href')).offset().top,
+                          $section = $($anchor.attr('href')).offset(),
                           $window = $(window).width(),
                           $minusDesktop = getNav.data("minus-value-desktop"),
                           $minusMobile = getNav.data("minus-value-mobile"),

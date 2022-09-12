@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit  {
-
+  error : string = ''
   loading: boolean = false;
   category:any;
   articles: any[] =[];
@@ -33,7 +33,7 @@ export class FilterComponent implements OnInit  {
         this.loading = true
         this._GeneralService.filterData(params['params'].from ,params['params'].to ).subscribe(
           (response) => {
-            console.log(response.posts);
+            console.log(response);
             const filteredArticles = response.posts.filter(
               (filter:any) => {
                 return filter.post_status != 0;
@@ -41,6 +41,14 @@ export class FilterComponent implements OnInit  {
             )
             this.articles = filteredArticles;
             this.loading = false;
+            if(this.error != ''){
+              this.error = '';
+            }
+          }, error => {
+            this.loading = false;
+            if(error.status == 500){
+              this.error = "مفيش فالتاريخ دا مقالات";
+            }
           }
         )
       }

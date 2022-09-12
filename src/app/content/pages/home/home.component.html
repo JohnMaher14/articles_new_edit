@@ -94,7 +94,7 @@
   <!-- /.End of banner content -->
 </div>
 <div class="container">
-  <div class="row">
+  <div class="row homeContent">
     <div class="hidden-xs hidden-sm col-md-2 leftSidebar">
       <div class="trending-post">
         <div class="title-holder">
@@ -107,7 +107,7 @@
 
             <div class="entry-meta">
               <span class="comment-link"><a><i class="fa fa-comment" aria-hidden="true"></i>
-                {{article.comment_re?.length}}
+                <s>{{article.comment_re?.length}}</s>
                   ردوا عليه</a></span>
             </div>
             <h4><a [routerLink]="['/article-details',article.id]">
@@ -133,8 +133,9 @@
           <figcaption>
             <!-- <div class="post-cat"><span>في</span> <a href="articles.html">اكلات شرقي</a></div> -->
             <div class="entry-meta">
-              <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i><time
-                  datetime="2018-01-21T19:00">{{article.created_at}}</time></span>
+              <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i>
+                <time datetime="2018-01-21T19:00" style="margin:0 10px;">{{article.created_at | date:'EEEE  d MMMM  y, h:mm a':undefined:'ar'}}</time>
+              </span>
 
 
             </div>
@@ -167,8 +168,11 @@
               {{article.title}}
             </a></h3>
             <div class="entry-meta">
-              <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i><time
-                  datetime="2018-01-21T19:00">{{article.created_at}}</time></span>
+              <span class="entry-date">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <time datetime="2018-01-21T19:00" style="margin:0 10px;">{{article.created_at | date:'EEEE  d MMMM  y, h:mm a':undefined:'ar'}}</time>
+
+              </span>
               <span class="comment-link"><a><i class="fa fa-comment" aria-hidden="true"></i>9
                   ردوا عليه</a></span>
             </div>
@@ -236,10 +240,10 @@
                 {{article.title}}
               </a></h6>
               <div class="entry-meta">
-                <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i><time
-                    datetime="2018-01-21T19:00">
-                    {{article.created_at}}
-                  </time></span>
+                <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i>
+                  <time datetime="2018-01-21T19:00" style="margin:0 10px;">{{article.created_at | date:'EEEE  d MMMM  y, h:mm a':undefined:'ar'}}</time>
+
+                </span>
               </div>
             </div>
           </div>

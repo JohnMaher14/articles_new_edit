@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { environment } from 'src/environments/environment';
 
@@ -20,7 +20,6 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private _CategoryService:CategoryService,
     private _ActivatedRoute:ActivatedRoute,
-    private _Router:Router
   ) { }
 
   ngOnInit(): void {

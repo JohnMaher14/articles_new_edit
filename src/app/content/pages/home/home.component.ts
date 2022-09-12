@@ -3,8 +3,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { environment } from 'src/environments/environment';
-import * as _ from 'lodash';
 import { Params } from '@angular/router';
+import { LOCALE_ID } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     this._ArticlesService.getArticles().subscribe(
       (response) => {
         const newArticles = response.row.filter((x:any) => {
-          return x.post_status != 0;
+          return x.post_status != 0 ;
         })
 
         this.articles = newArticles;
@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
 
     )
   }
+
   showArticlesViews(){
     this.loading  = true;
     this._ArticlesService.getArticles().subscribe(

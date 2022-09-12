@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +25,13 @@ import { ContactUsComponent } from './content/pages/contact-us/contact-us.compon
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { FilterComponent } from './content/pages/filter/filter.component';
 import { SwiperModule } from "swiper/angular";
+import { ArabicNumbersPipe } from './pipes/arabic-numbers.pipe';
+import { registerLocaleData } from '@angular/common';
+import localeAr from '@angular/common/locales/ar';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
+// the second parameter 'fr' is optional
+registerLocaleData(localeAr, 'ar');
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +47,8 @@ import { SwiperModule } from "swiper/angular";
     WeatherComponent,
     LoaderComponent,
     ContactUsComponent,
-    FilterComponent
+    FilterComponent,
+    ArabicNumbersPipe
   ],
   imports: [
     BrowserModule,
@@ -52,9 +60,13 @@ import { SwiperModule } from "swiper/angular";
     NgxPaginationModule,
     ReactiveFormsModule,
     BsDatepickerModule,
-    SwiperModule
+    SwiperModule,
+    SweetAlert2Module.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: "ar" }, //replace "en-US" with your locale
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

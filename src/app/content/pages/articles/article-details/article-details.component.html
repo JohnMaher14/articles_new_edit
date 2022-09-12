@@ -11,11 +11,9 @@
             <h2>{{article?.title}}</h2>
             <div class="element-block">
               <div class="entry-meta">
-                <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time
-                    datetime="2018-01-21T19:00">
-                    {{article?.created_at | date:'medium'}}
-
-                  </time></span>
+                <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i>
+                  <time datetime="2018-01-21T19:00" style="margin:0 10px;">{{article.created_at | date:'EEEE  d MMMM  y, h:mm a':undefined:'ar'}}</time>
+                                </span>
                 <!-- <span class="comment-link"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>05:09 م</a></span> -->
               </div>
             </div>
@@ -105,10 +103,10 @@
                 {{article.title}}
               </a></h6>
               <div class="entry-meta">
-                <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i><time
-                    datetime="2018-01-21T19:00">
-                    {{article.created_at}}
-                  </time></span>
+                <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i>
+                  <time datetime="2018-01-21T19:00" style="margin:0 10px;">{{article.created_at | date:'EEEE  d MMMM  y, h:mm a':undefined:'ar'}}</time>
+                  <!-- <time class="d-block" datetime="2018-01-21T19:00">{{article.created_at | date:'shortTime':undefined:'ar'}}</time> -->
+                </span>
               </div>
             </div>
           </div>
@@ -120,63 +118,66 @@
         <img src="assets/img/ad-300x250-1.png" class="img-responsive" alt="">
       </div>
     </div>
-    <div class="comments container">
-      <div class="comment_form">
-        <h3 class="replay_title">ماتكتبلنا تعليق ياسطى</h3>
+    <div class="col-md-12">
 
-        <div *ngIf="success" class="alert alert-success text-center">
-          <img src="assets/img/icon/check.png" alt="">
-          <h4>ردك وصلنا</h4>
-        </div>
-        <form [formGroup]="commentForm" (ngSubmit)="submitMessageForm()">
+      <div class="comments container">
+        <div class="comment_form">
+          <h3 class="replay_title">ماتكتبلنا تعليق ياسطى</h3>
 
-          <div class="form-group">
-            <label for="name" class="col-form-label">الرسالة *</label>
-
-            <textarea class="form-control" id="textarea" rows="5" formControlName='text' ></textarea>
-            <div *ngIf="commentForm.controls['text'].touched && commentForm.controls['text'].errors != null"
-            id="text" class="alert mt-2 alert-danger" role="alert">
-            <p class="mb-0" *ngIf="commentForm.controls['text'].errors['required']">الرسالة مطلوبة</p>
-            </div>
+          <div *ngIf="success" class="alert alert-success text-center">
+            <img src="assets/img/icon/check.png" alt="">
+            <h4>ردك وصلنا</h4>
           </div>
-          <div class="row">
-            <div class="col-md-6">
+          <form [formGroup]="commentForm" (ngSubmit)="submitMessageForm()">
 
-              <div class="form-group ">
-                <label for="name" class="col-form-label">الاسم *</label>
-                <input class="form-control" id="name" type="text"  formControlName="title">
-                <div *ngIf="commentForm.controls['title'].touched && commentForm.controls['title'].errors != null"
-                id="title" class="alert mt-2 alert-danger" role="alert">
-                <p class="mb-0"
-                  *ngIf="commentForm.controls['title'].errors['required']">الاسم مطلوب</p>
-                <p class="mb-0"
-                  *ngIf="commentForm.controls['title'].errors['pattern']">الاسم يحتوي علي ارقام او حروف</p>
-                </div>
+            <div class="form-group">
+              <label for="name" class="col-form-label">الرسالة *</label>
+
+              <textarea class="form-control" id="textarea" rows="5" formControlName='text' ></textarea>
+              <div *ngIf="commentForm.controls['text'].touched && commentForm.controls['text'].errors != null"
+              id="text" class="alert mt-2 alert-danger" role="alert">
+              <p class="mb-0" *ngIf="commentForm.controls['text'].errors['required']">الرسالة مطلوبة</p>
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-6">
 
-          </div>
+                <div class="form-group ">
+                  <label for="name" class="col-form-label">الاسم *</label>
+                  <input class="form-control" id="name" type="text"  formControlName="title">
+                  <div *ngIf="commentForm.controls['title'].touched && commentForm.controls['title'].errors != null"
+                  id="title" class="alert mt-2 alert-danger" role="alert">
+                  <p class="mb-0"
+                    *ngIf="commentForm.controls['title'].errors['required']">الاسم مطلوب</p>
+                  <p class="mb-0"
+                    *ngIf="commentForm.controls['title'].errors['pattern']">الاسم يحتوي علي ارقام او حروف</p>
+                  </div>
+                </div>
+              </div>
 
-          <button type="submit" [disabled]="commentForm.invalid" class="btn link-btn"> يللا بينا</button>
-        </form>
-      </div>
-      <h3 class="comment_title">{{comments.length}} التعليقات</h3>
-      <ng-container *ngIf="comments.length > 0">
+            </div>
 
-        <div class="media" *ngFor="let comment of comments">
-          <div class="media-left" *ngIf="comment.comment_status == 1">
-            <img src="assets/img/avatar.jpg" alt="" class="media-object">
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">{{comment.title}}<small>{{comment.created_at | date:'medium'}}</small></h4>
-            <p>
-              {{comment.text}}
-            </p>
-          </div>
+            <button type="submit" [disabled]="commentForm.invalid" class="btn link-btn"> يللا بينا</button>
+          </form>
         </div>
-      </ng-container>
+        <h3 class="comment_title">{{comments.length}} التعليقات</h3>
+        <ng-container *ngIf="comments.length > 0">
+
+          <div class="media" *ngFor="let comment of comments">
+            <div class="media-left" *ngIf="comment.comment_status == 1">
+              <img src="assets/img/avatar.jpg" alt="" class="media-object">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{comment.title}}<small>{{comment.created_at | date:'medium'}}</small></h4>
+              <p>
+                {{comment.text}}
+              </p>
+            </div>
+          </div>
+        </ng-container>
 
 
+      </div>
     </div>
   </div>
 </div>

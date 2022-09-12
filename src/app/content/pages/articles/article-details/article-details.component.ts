@@ -5,8 +5,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 import SwiperCore, { SwiperOptions }  from 'swiper';
-
+ 
 @Component({
   selector: 'app-article-details',
   templateUrl: './article-details.component.html',
@@ -106,14 +107,9 @@ export class ArticleDetailsComponent implements OnInit {
       (response) => {
         console.log(response);
         this.getDetails();
-        this.success = true
-        setTimeout(() => {
-          this.success = false
-
-        }, 2000);
-        // this._NgbModal.open(response,  { centered: true });
         this.loading = false;
-
+        Swal.fire('حبيبي تسلم...', 'وصلت يا ريس!', 'success');
+        this.commentForm.reset();
       }
     )
   }

@@ -22,13 +22,13 @@
       <div class="collapse navbar-collapse" id="navbar-menu">
         <ul class="nav navbar-nav navbar-center" data-in="navFadeInDown" data-out="navFadeOutUp">
           <li class="">
-            <a><i class="fas fa-calendar mx-1"></i> {{today}} </a>
+            <a><i class="fas fa-calendar mx-1"></i> {{calenderArabic}} </a>
           </li>
 
           <li class="dropdown">
             <a routerLink="/weather" class="dropdown-toggle"><i class="fa fa-cloud mx-1" style="color: #F29F26;"></i>
               الطقس</a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu animated">
               <div class="card">
                 <div class="card-body text-center">
                   <h4 class="card-title">
@@ -53,7 +53,7 @@
           <li class="dropdown">
             <a routerLink="/prayers" class="dropdown-toggle"><i style="color: #198754;" class="fas fa-mosque mx-1"></i>
               مواقيت الصلاة </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu animated">
               <table class="table prayer-times-3 text-center mb-0">
                 <thead>
                   <th class="text-center">الصلاة</th>
@@ -63,7 +63,7 @@
                   <tr>
                     <td>Fajr
                     </td>
-                    <td>{{prayerTimeContainer?.Fajr}}
+                    <td>{{'2022-02-18 ' + prayerTimeContainer?.Fajr | date:'shortTime'}}
                     </td>
                   </tr>
 
@@ -72,7 +72,7 @@
 
 
                     </td>
-                    <td>{{prayerTimeContainer?.Dhuhr}}
+                    <td>{{'2022-02-18 ' + prayerTimeContainer?.Dhuhr | date:'shortTime'}}
 
 
                     </td>
@@ -80,14 +80,14 @@
                   <tr>
                     <td>Asr
                     </td>
-                    <td>{{prayerTimeContainer?.Asr}}
+                    <td>{{'2022-02-18 ' + prayerTimeContainer?.Asr | date:'shortTime'}}
                     </td>
                   </tr>
                   <tr>
                     <td>Maghrib
 
                     </td>
-                    <td>{{prayerTimeContainer?.Maghrib}}
+                    <td>{{'2022-02-18 ' + prayerTimeContainer?.Maghrib | date:'shortTime'}}
 
                     </td>
                   </tr>
@@ -96,7 +96,7 @@
 
 
                     </td>
-                    <td>{{prayerTimeContainer?.Isha}}
+                    <td>{{'2022-02-18 ' + prayerTimeContainer?.Isha | date:'shortTime'}}
 
 
                     </td>
@@ -108,24 +108,23 @@
 
           <li class="dropdown">
             <a class="dropdown-toggle"><i class="fas fa-boxes" style="color: #0DCAF0;"></i> ارشيفنا</a>
-            <ul class="dropdown-menu ">
-              <form action="" [formGroup]="dateFilter" (ngSubmit)="onSubmitDate()" method="post" class="text-right">
+            <ul class="dropdown-menu animated" >
+              <form action="" [formGroup]="dateFilter" (ngSubmit)="onSubmitDate(dateFilter)" method="post" class="text-right">
 
-                <div class="form-group">
-                  <input type="date"
-                  formControlName="date1"
-                  class="form-control"
-                  >
-                </div>
-                <div class="form-group">
-                  <input type="date"
-                  formControlName="date2"
-                  class="form-control"
-                  [max]="todayReverse"
-                  >
-                </div>
+
+                <input type="text"
+                formControlName="date"
+                placeholder="Daterangepicker"
+                class="form-control mb-1"
+                #drp="bsDaterangepicker"
+                bsDaterangepicker
+                [bsConfig]="{ adaptivePosition: true }"
+                [maxDate]="maxDate"
+                [(ngModel)]="bsRangeValue">
+
                 <button class="btn btn-success" [disabled]="dateFilter.invalid" type="submit">دور</button>
               </form>
+
             </ul>
           </li>
         </ul>
@@ -179,3 +178,4 @@
     <!-- /. End of side menu -->
     <div class="side-overlay" (click)="closeSideOverlay()"></div>
   </nav>
+

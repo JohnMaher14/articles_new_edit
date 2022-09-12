@@ -19,11 +19,16 @@ export class NavbarComponent implements OnInit {
   categories: any[] =[];
   pipe = new DatePipe('en-US');
   today: any;
+  calenderArabic = new Date().toLocaleString('ar-EG', {weekday:'short' ,day: 'numeric' , month:'long' , year :'numeric'})
   artcilesFilter: any[] =[];
   todayReverse: any;
-  bsInlineValue = new Date();
-  bsInlineRangeValue!: Date[];
-  maxDate = new Date();
+  date = new DatePipe('en-US');
+  bsRangeValue!: Date[];
+
+  minDate!: Date;
+    bsValue = new Date();
+
+  maxDate!: Date;
   dateData:any = new BehaviorSubject(null);
   constructor(
     private _PrayerTimeService:PrayerTimeService,
@@ -92,21 +97,12 @@ export class NavbarComponent implements OnInit {
     this._Renderer2.removeClass(sidebar, 'on')
   }
   dateFilter = new FormGroup({
-    'date1' : new FormControl('', Validators.required),
-    'date2' : new FormControl('', Validators.required)
+    'date' : new FormControl('', Validators.required),
   })
-  onSubmitDate(){
-    // this._GeneralService.filterData(this.dateFilter.value.date1 , this.dateFilter.value.date2).subscribe(
-    //   (response) => {
-    //     sessionStorage.setItem('date1', this.dateFilter.value.date1)
-    //     sessionStorage.setItem('date2', this.dateFilter.value.date2)
-    //     // this.artcilesFilter =response.posts;
-    //     this._GeneralService.sendData(response.posts)
-    //     this._Router.navigate([`/filter?startDate=${this.dateFilter.value.date1}&endDate=${this.dateFilter.value.date2}`])
-    //     this.dateFilter.reset();
-    //   }
-    // )
-    this._Router.navigate([`/filter/${this.dateFilter.value.date1}/${this.dateFilter.value.date2}`])
+
+  onSubmitDate(dateFilter:FormGroup){
+
+    this._Router.navigate([`/filter/${this.date.transform(dateFilter.value.date[0] , 'yyyy-MM-dd')}/${this.date.transform(dateFilter.value.date[1] , 'yyyy-MM-dd')}`])
 
   }
 
@@ -115,7 +111,9 @@ export class NavbarComponent implements OnInit {
     this.getPrayersTime()
     this.showCategories();
     this.getTodayDate();
-
+    this.maxDate = new Date();
+    this.maxDate.setDate(this.maxDate.getDate());
+    this.bsRangeValue = [this.bsValue, this.maxDate];
   }
 
 }

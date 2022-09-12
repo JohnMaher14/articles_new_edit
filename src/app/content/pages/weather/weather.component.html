@@ -294,54 +294,21 @@
                 <p>{{weatherContainerDetails?.country}}</p>
               </div>
               <div class="date d-flex align-items-center justify-content-center">
-                <p>{{weatherContainerDetails?.localtime | date:'short'}}
+                <p>{{weatherContainerDetails?.localtime | date:'EEEE  d MMMM  y, h:mm a':undefined:'ar'}}
                 </p>
               </div>
               <div class="row text-white w-main d-flex justify-content-center">
                 <div class="text-center">
                   <i class="fa fa-cloud fa-2x" style="color: #F29F26;"></i>
                   <div class="d-flex align-items-center">
-                    <span id="temperature">{{weatherContainer?.feelslike_c}}°</span>
-                    <span style="    font-size: 2em;
-                                          margin-right: 15px;" class="">{{weatherContainer?.temp_c}}°</span>
+                    <span id="temperature">{{weatherContainer?.temp_c}}°</span>
+                    <span style="    font-size: 2em;margin-right: 15px;" class="">{{weatherContainer?.feelslike_c}}°</span>
 
                   </div>
                 </div>
 
               </div>
             </div>
-            <!-- <div class=" card-section">
-              <div class="row d-flex justify-content-center">
-                <div class="col-sm-11 col-md-10">
-                  <div class="days-box row text-center bg-white" style="visibility: visible;">
-                    <div class="col-xs-3 day-first" style="visibility: visible;">
-                      <p class="day">الخميس</p>
-                      <hr class="hr-title hr-title-primary">
-                      <p><i class="wi wi-day-sunny"></i></p>
-                      <p><span class="d-min-temp">22°</span> <span class="d-max-temp">34°</span></p>
-                    </div>
-                    <div class="col-xs-3" style="visibility: visible;">
-                      <p class="day">الجمعة</p>
-                      <hr class="hr-title hr-title-primary">
-                      <p><i class="wi wi-day-sunny"></i></p>
-                      <p><span class="d-min-temp">23°</span> <span class="d-max-temp">36°</span></p>
-                    </div>
-                    <div class="col-xs-3" style="visibility: visible;">
-                      <p class="day">السبت</p>
-                      <hr class="hr-title hr-title-primary">
-                      <p><i class="wi wi-day-sunny"></i></p>
-                      <p><span class="d-min-temp">25°</span> <span class="d-max-temp">38°</span></p>
-                    </div>
-                    <div class="col-xs-3" style="visibility: visible;">
-                      <p class="day">الأحد</p>
-                      <hr class="hr-title hr-title-primary">
-                      <p><i class="wi wi-day-sunny"></i></p>
-                      <p><span class="d-min-temp">25°</span> <span class="d-max-temp">37°</span></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </section>
           <!-- /.End of post details -->
         </main>
@@ -366,7 +333,7 @@
                 <div class="entry-meta">
                   <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i><time
                       datetime="2018-01-21T19:00">
-                      {{article.created_at}}
+                      {{article.created_at | date:'EEEE  d MMMM  y, h:mm a':undefined:'ar' }}
                     </time></span>
                 </div>
               </div>

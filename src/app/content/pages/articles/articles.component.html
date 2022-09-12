@@ -16,9 +16,9 @@
     </div>
   </div>
 <div class="container">
-  <main class="row py-5 content p_r_40">
+  <main class="row py-5 content p_r_40" *ngIf="articles.length > 0" >
     <ng-container *ngFor="let article of articles | paginate: { itemsPerPage: 6, currentPage: page }">
-      <div class=" col-md-6" *ngIf="article.post_status == 1">
+      <div class=" col-md-6">
         <div class="media meida-md">
           <div class="media-left">
             <a><img [src]="articleImage+article.main_image" class="media-object" alt=""></a>
@@ -31,9 +31,11 @@
                   {{article.title}}
                 </a></h3>
               <div class="entry-meta">
-                <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i><time
-                    datetime="2018-01-21T19:00">{{article.created_at | date:'short'}}
-                  </time></span>
+                <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i>
+                  <time datetime="2018-01-21T19:00" style="margin:0 10px;">{{article.created_at | date:'EEEE  d MMMM  y, h:mm a':undefined:'ar'}}</time>
+
+
+                </span>
                 <span class="comment-link"><a><i class="fa fa-comment" aria-hidden="true"></i>
                   {{article.comment_re?.length}} ردوا عليه
                   </a></span>
@@ -54,27 +56,16 @@
       </div>
 
     </ng-container>
+  </main>
+  <main class="row py-5 content p_r_40" *ngIf="articles.length === 0" >
+    <ng-container>
+      <div class="col-md-12">
+        <h4 class="text-center" style="margin-bottom: 70px;">
+          لا يوجد مقالات الأن
+        </h4>
+      </div>
 
-
-
-
-    <!-- /.End of media left post -->
-    <!-- /.End of Load more -->
-    <!-- <div class="col-md-12 text-center">
-
-      <ul class="pagination ">
-        <li class="disabled"><a>&#8702;</a></li>
-
-        <li class="active"><a>1 <span class="sr-only">(current)</span></a></li>
-        <li><a>2</a></li>
-        <li><a>3</a></li>
-        <li class="page-numbers"><span>...</span></li>
-        <li><a>5</a></li>
-        <li><a>&#8701;</a></li>
-
-      </ul>
-    </div> -->
-    <!-- /.End of pagination -->
+    </ng-container>
   </main>
   <pagination-controls class="d-flex align-content-center justify-content-center" [maxSize]="6" *ngIf="articles.length > 6"
     previousLabel="الراح"

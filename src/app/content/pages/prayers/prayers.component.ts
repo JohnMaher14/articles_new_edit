@@ -16,7 +16,9 @@ export class PrayersComponent implements OnInit {
   articlesViews: any[] =[];
   pipe = new DatePipe('en-US');
   articleImage:string = `${environment.imageUrl}posts/`;
+  calenderArabic = new Date().toLocaleString('ar-EG', {weekday:'short' ,day: 'numeric' , month:'long' , year :'numeric'})
 
+  time = new Date().toLocaleString('ar-EG', {hour: 'numeric' , minute:'numeric' , hour12: true});
   constructor(
     private _PrayerTimeService:PrayerTimeService,
     private _ArticlesService:ArticlesService
@@ -71,7 +73,9 @@ export class PrayersComponent implements OnInit {
   ngOnInit(): void {
     this.showPrayers();
     this.showArticlesViews();
-    // console.log(this.pipe.transform(Date.now(), 'dd-MM-yyyy'));
+    setInterval(() => {
+      this.time = new Date().toLocaleString('ar-EG', {hour: 'numeric' , minute:'numeric' , hour12: true});;
+    }, 1000);
   }
 
 }

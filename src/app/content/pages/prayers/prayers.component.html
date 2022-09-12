@@ -287,9 +287,9 @@
                     <p>-</p>
                     <p>القاهرة</p>
                   </div>
-                  <p>الإثنين 06 يونيو 2022
+                  <p>{{calenderArabic}}
                   </p>
-                  <p>الساعة الان 10:42:11 ص</p>
+                  <p> الساعة الان {{time}} </p>
                 </div>
               </div>
             </div>
@@ -303,20 +303,21 @@
                 <p class="day">صلاة الفجر</p>
                 <hr class="hr-title hr-title-primary">
                 <p><i class="wi"></i></p>
-                <p><span class="d-min-temp">{{prayerTimeContainer.Fajr}}</span> <span class="d-max-temp"></span></p>
+                <p><span class="d-min-temp">{{'2022-06-20 ' + prayerTimeContainer?.Fajr | date:'shortTime'}}</span> <span class="d-max-temp"></span></p>
+                <!-- <p><span class="d-min-temp">{{prayerTimeContainer.Fajr | date : 'medium' : undefined : 'fr'}}</span> <span class="d-max-temp"></span></p> -->
               </div>
               <div class="col-md-2 col-xs-3 day-first">
                 <p class="day">صلاة الظهر </p>
                 <hr class="hr-title hr-title-primary">
                 <p><i class="wi"></i></p>
-                <p><span class="d-min-temp">{{prayerTimeContainer.Dhuhr}}
+                <p><span class="d-min-temp">{{'2022-06-20 ' + prayerTimeContainer?.Dhuhr | date:'shortTime'}}
                   </span> <span class="d-max-temp"></span></p>
               </div>
               <div class="col-md-2 col-xs-3 day-first">
                 <p class="day">صلاة العصر</p>
                 <hr class="hr-title hr-title-primary">
                 <p><i class="wi"></i></p>
-                <p><span class="d-min-temp">{{prayerTimeContainer.Asr}}
+                <p><span class="d-min-temp">{{'2022-06-20 ' + prayerTimeContainer?.Asr| date:'shortTime'}}
 
                   </span> <span class="d-max-temp"></span></p>
               </div>
@@ -324,7 +325,7 @@
                 <p class="day">صلاة المغرب</p>
                 <hr class="hr-title hr-title-primary">
                 <p><i class="wi"></i></p>
-                <p><span class="d-min-temp">{{prayerTimeContainer.Maghrib}}
+                <p><span class="d-min-temp">{{'2022-06-20 ' + prayerTimeContainer?.Maghrib | date:'shortTime'}}
                   </span> <span class="d-max-temp"></span></p>
               </div>
 
@@ -332,7 +333,7 @@
                 <p class="day">صلاة العشاء</p>
                 <hr class="hr-title hr-title-primary">
                 <p><i class="wi"></i></p>
-                <p><span class="d-min-temp">{{prayerTimeContainer.Isha}}
+                <p><span class="d-min-temp">{{'2022-06-20 ' + prayerTimeContainer?.Isha| date:'shortTime'}}
                   </span> <span class="d-max-temp"></span></p>
               </div>
 
@@ -364,7 +365,7 @@
               <div class="entry-meta">
                 <span class="entry-date"><i class="fa fa-calendar" aria-hidden="true"></i><time
                     datetime="2018-01-21T19:00">
-                    {{article.created_at}}
+                    {{article.created_at | date:'EEEE  d MMMM  y, h:mm a':undefined:'ar'}}
                   </time></span>
               </div>
             </div>
@@ -375,6 +376,7 @@
       <div class="banner-content">
         <img src="assets/img/ad-300x250-1.png" class="img-responsive" alt="">
       </div>
+
     </div>
   </div>
 </div>
