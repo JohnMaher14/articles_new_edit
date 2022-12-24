@@ -51,7 +51,7 @@ registerLocaleData(localeAr, 'ar');
     ArabicNumbersPipe
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
